@@ -1,27 +1,32 @@
+# Project Setup
+
+## Install Dependencies
+```bash
 npm install monaco-editor monaco-editor-webpack-plugin react-app-rewired --save-dev
 npm install socket.io-client monaco-editor
+```
 
 
-run spring boot:
+Backend (Spring Boot):
+Make sure to refresh the maven project after any updates to pom.xml
+```bash
 mvn clean install
 mvn spring-boot:run
+```
+
+Notes:
+Used latest version of Maven.
+Project developed in IntelliJ IDEA.
+JDK 21 used.
 
 
-most recent verion of maven 
-ran in intelij project (backend)
-JDK 21 used
 
-
-
-
-
-wish list:
-1. fix the bug where room gets reset when someone joins
-2. add user accounts and multiple documents
-3. allow for users to save the file to their account (setup longterm database to read and write to when people open/close doc)
-5. add cursor location support (show where peoples curors are)
-6. add highlighting support (show where people are highlighting)
-7. add the ability to write code and be able to compile it
-8. add support to have password rooms ontop of room id
-9. support changing the url to have the custom link to signify the room its in
-10. 
+Wish List
+1. ~~fix the bug where room gets reset when someone joins~~ 
+2. Add user accounts and multiple documents
+3. Allow users to save the file to their account (long-term database for document access)
+4. Add cursor location support (show where people's cursors are)
+5. Add highlighting support (show where people are highlighting)
+6. Add ability to write and compile code
+7. Add support for password-protected rooms
+8. Allow custom URLs for room identification
