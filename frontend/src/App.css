@@ -1,0 +1,13 @@
+textarea {
+  height: 90vh;
+  width: 100%;
+  font-family: monospace;
+  font-size: 14px;
+  padding: 10px;
+}
+
+p {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  margin-top: 10px;
+}
