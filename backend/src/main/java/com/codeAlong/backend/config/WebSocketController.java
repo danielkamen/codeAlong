@@ -33,4 +33,28 @@ public class WebSocketController {
             return "";
         }
     }
+
+    @MessageMapping("/joinSession")
+    @SendTo("/topic/code")
+    public String joinSession(@Payload String message) {
+        // Parse the message to extract sessionId
+        // Assuming the message is in the format: {"sessionId": "sessionId"}
+        try {
+            JSONObject jsonMessage = new JSONObject(message);
+            String sessionId = jsonMessage.getString("sessionId");
+
+            // Fetch the current code
+            String code = sessionService.getCode(sessionId);
+
+            // Return the code to the new participant
+            JSONObject response = new JSONObject();
+            response.put("sessionId", sessionId);
+            response.put("code", code);
+
+            return response.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
 }

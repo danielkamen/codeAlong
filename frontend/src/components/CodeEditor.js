@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { CompatClient, Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
+import axios from 'axios';
 
 const CodeEditor = ({ sessionId }) => {
   const [code, setCode] = useState('');
   const [stompClient, setStompClient] = useState(null);
 
   useEffect(() => {
+    const fetchExistingCode = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/session/code?sessionId=${sessionId}`);
+        if (response.status === 200) {
+          setCode(response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching existing code:', error);
+      }
+    };
+
     const socket = new SockJS('http://localhost:8080/ws');
     const client = Stomp.over(socket);
 
@@ -16,7 +28,10 @@ const CodeEditor = ({ sessionId }) => {
         setCode(newCode);
       });
 
-      client.send('/app/codeUpdate', {}, JSON.stringify({ sessionId, code }));
+      // Fetch existing code after connecting
+      fetchExistingCode();
+
+      client.send('/app/joinSession', {}, JSON.stringify({ sessionId }));
     });
 
     setStompClient(client);
