@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { CompatClient, Stomp } from '@stomp/stompjs';
+import { Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-const CodeEditor = ({ sessionId }) => {
+const CodeEditor = () => {
+  const { sessionId } = useParams();
   const [code, setCode] = useState('');
   const [stompClient, setStompClient] = useState(null);
 

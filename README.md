@@ -29,4 +29,4 @@ Wish List
 5. Add highlighting support (show where people are highlighting)
 6. Add ability to write and compile code
 7. Add support for password-protected rooms
-8. Allow custom URLs for room identification
+8. ~~Allow custom URLs for room identification~~
